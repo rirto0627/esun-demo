@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.3'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'work.rx-bear'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    // Web 支援 (RESTful API)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // JPA / ORM 資料存取
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // 驗證功能（@Valid）
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // AOP 用於攔截交易或日誌
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    // MariaDB 資料庫驅動
+    implementation 'org.mariadb.jdbc:mariadb-java-client'
+
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
