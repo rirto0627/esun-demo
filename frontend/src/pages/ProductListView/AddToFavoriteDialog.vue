@@ -19,7 +19,7 @@
       </div>
 
       <div class="p-6 space-y-4">
-        <ProductInfo :product="product" />
+        <ProductInfo v-if="product" :product="product" />
 
         <form @submit.prevent="handleSubmit" class="space-y-4">
           <AccountSelector
