@@ -85,6 +85,17 @@ BEGIN
     DELETE FROM LikeList WHERE SN = in_sn;
     SET affected_rows = ROW_COUNT();
 END;
+-- 取得所有金融商品
+CREATE PROCEDURE GetAllProducts()
+BEGIN
+    SELECT
+        No AS productNo,
+        ProductName,
+        Price,
+        FeeRate
+    FROM Product
+    ORDER BY No DESC;
+END $$
 
 
 DELIMITER ;

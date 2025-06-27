@@ -1,27 +1,28 @@
--- 使用者資料表
+DROP TABLE IF EXISTS LikeList;
+DROP TABLE IF EXISTS Product;
+DROP TABLE IF EXISTS User;
+
 CREATE TABLE User (
                       UserID VARCHAR(20) PRIMARY KEY,
                       UserName VARCHAR(50) NOT NULL,
-                      Email VARCHAR(100) NOT NULL,
-                      Account VARCHAR(20) NOT NULL
+                      Email VARCHAR(100) UNIQUE NOT NULL,
+                      Account VARCHAR(20) UNIQUE NOT NULL
 );
 
--- 產品資料表
 CREATE TABLE Product (
                          No INT PRIMARY KEY AUTO_INCREMENT,
                          ProductName VARCHAR(100) NOT NULL,
-                         Price DECIMAL(10, 2) NOT NULL,
-                         FeeRate DECIMAL(5, 4) NOT NULL -- ex: 0.01 代表 1%
+                         Price DECIMAL(10,2) NOT NULL,
+                         FeeRate DECIMAL(5,4) NOT NULL
 );
 
--- 喜好清單
 CREATE TABLE LikeList (
                           SN INT PRIMARY KEY AUTO_INCREMENT,
-                          OrderName INT NOT NULL, -- 購買數量
+                          OrderName INT NOT NULL,
                           Account VARCHAR(20) NOT NULL,
-                          FeeTotal DECIMAL(10, 2) NOT NULL,
-                          TotalAmount DECIMAL(10, 2) NOT NULL,
-
-    -- 外鍵（可選）
-                          CONSTRAINT fk_account FOREIGN KEY (Account) REFERENCES User(Account)
+                          TotalFee DECIMAL(10,2) NOT NULL,
+                          TotalAmount DECIMAL(10,2) NOT NULL,
+                          ProductNo INT NOT NULL,
+                          CONSTRAINT fk_account FOREIGN KEY (Account) REFERENCES User(Account),
+                          CONSTRAINT fk_product FOREIGN KEY (ProductNo) REFERENCES Product(No)
 );
