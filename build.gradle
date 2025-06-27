@@ -44,13 +44,4 @@ dependencies {
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
-
-    jvmArgs '-Dfile.encoding=UTF-8'
-    systemProperty 'file.encoding', 'UTF-8'
-
-    testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-        showStandardStreams = true
-    }
 }
