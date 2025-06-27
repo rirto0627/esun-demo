@@ -40,7 +40,10 @@ public class LikeListRepository {
                 while (rs.next()) {
                     Map<String, Object> row = new LinkedHashMap<>();
                     row.put("sn", rs.getInt("SN"));
+                    row.put("productNo", rs.getInt("ProductNo"));
                     row.put("productName", rs.getString("ProductName"));
+                    row.put("productPrice", rs.getString("ProductPrice"));
+                    row.put("productFeeRate", rs.getString("ProductFeeRate"));
                     row.put("account", rs.getString("Account"));
                     row.put("orderNum", rs.getInt("OrderName"));
                     row.put("totalFee", rs.getBigDecimal("TotalFee"));
@@ -58,7 +61,7 @@ public class LikeListRepository {
              CallableStatement stmt = conn.prepareCall("{CALL UpdateLikeItem(?, ?, ?, ?)}")) {
 
             stmt.setInt(1, sn);
-            stmt.setInt(2, request.getProductNo());  // 改為 productNo
+            stmt.setInt(2, request.getProductNo());
             stmt.setString(3, request.getAccount());
             stmt.setInt(4, request.getOrderNum());
 

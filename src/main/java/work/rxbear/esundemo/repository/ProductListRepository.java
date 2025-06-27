@@ -30,10 +30,10 @@ public class ProductListRepository {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Map<String, Object> row = new LinkedHashMap<>();
-                    row.put("productNo", rs.getInt("productNo"));
+                    row.put("productNo", rs.getInt("ProductNo"));
                     row.put("productName", rs.getString("ProductName"));
-                    row.put("price", rs.getBigDecimal("Price"));
-                    row.put("feeRate", rs.getBigDecimal("FeeRate"));
+                    row.put("productPrice", rs.getBigDecimal("ProductPrice"));
+                    row.put("productFeeRate", rs.getBigDecimal("ProductFeeRate"));
                     resultList.add(row);
                 }
             }
