@@ -10,7 +10,7 @@ import work.rxbear.esundemo.service.ProductListService;
 
 import java.util.List;
 import java.util.Map;
-@CrossOrigin(origins = "*")
+
 @RestController
 @RequestMapping("/api/product-list")
 public class ProductListController {
