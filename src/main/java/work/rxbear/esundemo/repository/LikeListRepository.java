@@ -16,18 +16,17 @@ public class LikeListRepository {
 
     public void addLikeItem(LikeListRequest request) throws SQLException {
         try (Connection conn = dataSource.getConnection();
-             CallableStatement stmt = conn.prepareCall("{CALL AddLikeItem(?, ?, ?, ?, ?, ?)}")) {
+             CallableStatement stmt = conn.prepareCall("{CALL AddLikeItem(?, ?, ?, ?)}")) {
 
             stmt.setString(1, request.getUserId());
-            stmt.setString(2, request.getProductName());
-            stmt.setBigDecimal(3, request.getPrice());
-            stmt.setBigDecimal(4, request.getFeeRate());
-            stmt.setString(5, request.getAccount());
-            stmt.setInt(6, request.getOrderNum());
+            stmt.setInt(2, request.getProductNo());
+            stmt.setString(3, request.getAccount());
+            stmt.setInt(4, request.getOrderNum());
 
             stmt.execute();
         }
     }
+
 
     public List<Map<String, Object>> getLikeListByUserId(String userId) throws SQLException {
         List<Map<String, Object>> resultList = new ArrayList<>();
@@ -56,18 +55,17 @@ public class LikeListRepository {
 
     public void updateLikeItem(int sn, LikeListRequest request) throws SQLException {
         try (Connection conn = dataSource.getConnection();
-             CallableStatement stmt = conn.prepareCall("{CALL UpdateLikeItem(?, ?, ?, ?, ?, ?)}")) {
+             CallableStatement stmt = conn.prepareCall("{CALL UpdateLikeItem(?, ?, ?, ?)}")) {
 
             stmt.setInt(1, sn);
-            stmt.setString(2, request.getProductName());
-            stmt.setBigDecimal(3, request.getPrice());
-            stmt.setBigDecimal(4, request.getFeeRate());
-            stmt.setString(5, request.getAccount());
-            stmt.setInt(6, request.getOrderNum());
+            stmt.setInt(2, request.getProductNo());  // 改為 productNo
+            stmt.setString(3, request.getAccount());
+            stmt.setInt(4, request.getOrderNum());
 
             stmt.execute();
         }
     }
+
 
     public int deleteLikeItem(int sn) throws SQLException {
         try (Connection conn = dataSource.getConnection();
