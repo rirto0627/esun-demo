@@ -1,8 +1,6 @@
 DELIMITER $$
 
 -- 新增喜好商品記錄
-DELIMITER $$
-
 CREATE PROCEDURE AddLikeItem(
     IN in_user_id VARCHAR(20),
     IN in_product_no INT,
@@ -52,16 +50,28 @@ BEGIN
     END IF;
 END$$
 
-DELIMITER ;
-
-
-
-
 -- 查詢使用者喜好清單
-CREATE PROCEDURE GetLikeListByUserId(IN in_user_id VARCHAR(20))
+create
+    definer = `esun-demo`@`%` procedure GetLikeListByUserId(IN in_user_id varchar(20))
 BEGIN
+    DECLARE v_account VARCHAR(20);
+
+    -- 取得對應帳號（Account）
+    SELECT Account INTO v_account
+    FROM User
+    WHERE UserID = in_user_id;
+
+    -- 若無對應帳號，則結束
+    IF v_account IS NULL THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '無此使用者';
+    END IF;
+
+    -- 查詢 LikeList + 商品資訊（加入 p.No）
     SELECT
         ll.SN,
+        p.No AS ProductNo,
+        p.Price AS ProductPrice,
+        p.FeeRate AS ProductFeeRate,
         p.ProductName,
         ll.Account,
         ll.OrderName,
@@ -69,11 +79,9 @@ BEGIN
         ll.TotalAmount,
         u.Email
     FROM LikeList ll
-             JOIN User u ON ll.Account = u.Account
-             JOIN Product p ON p.No IN (
-        SELECT No FROM Product
-    )
-    WHERE u.UserID = in_user_id;
+             JOIN Product p ON ll.ProductNo = p.No
+             JOIN User u ON u.Account = ll.Account
+    WHERE ll.Account = v_account;
 END$$
 
 -- 更新喜好商品
@@ -127,10 +135,10 @@ END;
 CREATE PROCEDURE GetAllProducts()
 BEGIN
     SELECT
-        No AS productNo,
+        No AS ProductNo,
         ProductName,
-        Price,
-        FeeRate
+        Price AS ProductPrice,
+        FeeRate AS ProductFeeRate
     FROM Product
     ORDER BY No DESC;
 END $$
