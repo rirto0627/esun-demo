@@ -35,12 +35,22 @@ dependencies {
     // MariaDB 資料庫驅動
     implementation 'org.mariadb.jdbc:mariadb-java-client'
 
+    compileOnly("org.projectlombok:lombok:1.18.38")
+    annotationProcessor("org.projectlombok:lombok:1.18.38")
+
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+
+    jvmArgs '-Dfile.encoding=UTF-8'
+    systemProperty 'file.encoding', 'UTF-8'
+
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        showStandardStreams = true
+    }
 }
