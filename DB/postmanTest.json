@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "2f39c5bc-2779-40e1-9b45-8627b83f933c",
+		"name": "LikeList API",
+		"description": "測試喜好清單 API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13492656",
+		"_collection_link": "https://warped-meteor-603303.postman.co/workspace/Zentring~6d44054a-975f-4dc7-a284-4ced9527b0fc/collection/13492656-2f39c5bc-2779-40e1-9b45-8627b83f933c?action=share&source=collection_link&creator=13492656"
+	},
+	"item": [
+		{
+			"name": "📥 新增喜好商品",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": \"A1236456789\",\n  \"productName\": \"基金ABC\",\n  \"price\": 1010.00,\n  \"feeRate\": 0.01,\n  \"account\": \"1111999666\",\n  \"orderNum\": 3\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/like-list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"like-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "📄 查詢使用者喜好清單",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/like-list?userId=A1236456789",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"like-list"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "A1236456789"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "🔁 修改喜好商品",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": \"A1236456789\",\n  \"productName\": \"基金ABC\",\n  \"price\": 1100.00,\n  \"feeRate\": 0.012,\n  \"account\": \"1111999666\",\n  \"orderNum\": 4\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/like-list/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"like-list",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "🗑️ 刪除喜好商品",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"A1236456789\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/like-list/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"like-list",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "📥取得所有商品",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
