@@ -10,14 +10,15 @@
 
 <script setup lang="ts">
 
-const props = defineProps<{
+defineProps<{
   product: {
     id: number
     name: string
     price: number
     feeRate: number
-  } | null
+  }|null
 }>()
+
 
 // console.log(props)
 </script>

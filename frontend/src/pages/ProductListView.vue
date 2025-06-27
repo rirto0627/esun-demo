@@ -140,7 +140,7 @@ const closeDialog = () => {
   showDialog.value = false
   selectedProduct.value = null
 }
-const handleAddSuccess = (item: any) => {
+const handleAddSuccess = () => {
   showSuccessToast.value = true
   setTimeout(() => (showSuccessToast.value = false), 3000)
 }
