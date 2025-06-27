@@ -14,14 +14,14 @@ public class LikeListRequest {
     @NotNull(message = "userId 不可為空")
     private String userId;
 
-    @NotNull(message = "productName 不可為空")
-    private String productName;
+    @NotNull(message = "productNo 不可為空")
+    private Integer productNo;
 
-    @NotNull(message = "price 不可為空")
-    private BigDecimal price;
-
-    @NotNull(message = "feeRate 不可為空")
-    private BigDecimal feeRate;
+//    @NotNull(message = "price 不可為空")
+//    private BigDecimal price;
+//
+//    @NotNull(message = "feeRate 不可為空")
+//    private BigDecimal feeRate;
 
     @NotNull(message = "account 不可為空")
     private String account;

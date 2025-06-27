@@ -36,9 +36,9 @@ public class LikeListServiceImpl implements LikeListService {
     public List<Map<String, Object>> getLikeListByUserId(String userId) {
         try {
             List<Map<String, Object>> resultList = likeListRepository.getLikeListByUserId(userId);
-            if (resultList.isEmpty()) {
-                throw new NotFoundException("查無該使用者或無資料");
-            }
+//            if (resultList.isEmpty()) {
+//                throw new NotFoundException("查無該使用者或無資料");
+//            }
             return resultList;
         } catch (NotFoundException e) {
             throw e;

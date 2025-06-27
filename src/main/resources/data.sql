@@ -2,6 +2,7 @@
 INSERT INTO User (UserID, UserName, Email, Account)
 VALUES ('A1236456789', '王o明', 'test@example.com', '1111999666');
 
+
 -- 金融商品資料
 INSERT INTO Product (ProductName, Price, FeeRate) VALUES
                                                       ('債券高股息A', 3910.48, 0.05),
@@ -104,7 +105,4 @@ INSERT INTO Product (ProductName, Price, FeeRate) VALUES
                                                       ('期貨龍頭', 5027.32, 0.124),
                                                       ('債券亞洲C', 9965.25, 0.183),
                                                       ('期貨亞洲C', 7098.58, 0.015);
--- 喜好清單
-INSERT INTO LikeList (OrderName, Account, TotalFee, TotalAmount, ProductNo)
-VALUES (2, 'ACC001', 3.00, 203.00, 1),
-       (3, 'ACC002', 12.00, 612.00, 2);
+
